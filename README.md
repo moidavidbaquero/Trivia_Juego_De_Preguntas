@@ -94,6 +94,8 @@ Todas las imágenes se guardan en `docs/diseno/`.
 ![Mockup P6 · Resultado](docs/diseno/mockup-p6-resultado.png)
 ![Mockup P7 · Ranking y estadísticas](docs/diseno/mockup-p7-ranking.png)
 ![Mockup P8 · Ajustes](docs/diseno/mockup-p8-ajustes.png)
+
+## Prototipo Navegable
 ![Prototipo navegable](docs/diseno/diseno-prototipo.png)
 
 ### Aplicación terminada
