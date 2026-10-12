@@ -15,7 +15,7 @@ Juego web de preguntas y respuestas sobre Colombia, desarrollado con **HTML5, CS
 
 ## Enlaces
 
-- Diseño en Figma / MockFlow: _pendiente_
+- Diseño en MockFlow: _pendiente_
 - Despliegue en Vercel: _pendiente_
 - Video explicativo (máx. 5 min): _pendiente_
 
@@ -56,7 +56,7 @@ El diseño de la interfaz se elaboró antes del código, a partir de wireframes 
 
 Todas las imágenes se guardan en `docs/diseno/`.
 
-### Diseño (Figma / MockFlow)
+### Diseño (MockFlow)
 
 | Qué muestra                                                                 | Archivo                                       |
 | --------------------------------------------------------------------------- | --------------------------------------------- |
