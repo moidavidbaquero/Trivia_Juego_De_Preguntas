@@ -174,19 +174,19 @@ Casos de prueba del parcial (CP-01 a CP-13). Se marca el resultado después de e
 
 | ID    | Caso de prueba                                     | Resultado esperado                                                        | Estado        |
 | ----- | -------------------------------------------------- | ------------------------------------------------------------------------- | ------------- |
-| CP-01 | Intentar iniciar sin escribir el nombre            | Se muestra un mensaje y no se avanza                                      | Por verificar |
-| CP-02 | Iniciar una partida de Historia en nivel fácil     | Aparecen 10 preguntas distintas de esa categoría y nivel                  | Por verificar |
-| CP-03 | Jugar dos partidas seguidas con los mismos filtros | El orden de las preguntas y de las opciones cambia                        | Por verificar |
-| CP-04 | Responder correctamente con 12 segundos restantes  | Se suman 100 + 60 puntos (antes del multiplicador)                        | Por verificar |
-| CP-05 | Responder incorrectamente                          | La opción se marca en rojo, la correcta en verde y aparece la explicación | Por verificar |
-| CP-06 | Dejar agotar el tiempo                             | La pregunta cuenta como incorrecta con 0 puntos                           | Por verificar |
-| CP-07 | Hacer clic en otra opción después de responder     | No ocurre nada: las opciones están bloqueadas                             | Por verificar |
-| CP-08 | Usar el comodín 50/50                              | Desaparecen dos opciones incorrectas y el botón queda deshabilitado       | Por verificar |
-| CP-09 | Acertar 3 preguntas seguidas                       | Se suma la bonificación de racha de +50                                   | Por verificar |
-| CP-10 | Terminar una partida                               | Se muestra el resumen y el puntaje aparece en el ranking                  | Por verificar |
-| CP-11 | Recargar la página                                 | El ranking y las estadísticas se conservan                                | Por verificar |
-| CP-12 | Comparar la aplicación con el diseño               | Las pantallas, colores y componentes coinciden con el diseño              | Por verificar |
-| CP-13 | Abrir el juego en un celular de 360 px             | Todo se ve y funciona sin desplazamiento horizontal                       | Por verificar |
+| CP-01 | Intentar iniciar sin escribir el nombre            | Se muestra un mensaje y no se avanza                                      | Verificado    |
+| CP-02 | Iniciar una partida de Historia en nivel fácil     | Aparecen 10 preguntas distintas de esa categoría y nivel                  | Verificado    |
+| CP-03 | Jugar dos partidas seguidas con los mismos filtros | El orden de las preguntas y de las opciones cambia                        | Verificado    |
+| CP-04 | Responder correctamente con 12 segundos restantes  | Se suman 100 + 60 puntos (antes del multiplicador)                        | Verificado    |
+| CP-05 | Responder incorrectamente                          | La opción se marca en rojo, la correcta en verde y aparece la explicación | Verificado    |
+| CP-06 | Dejar agotar el tiempo                             | La pregunta cuenta como incorrecta con 0 puntos                           | Verificado    |
+| CP-07 | Hacer clic en otra opción después de responder     | No ocurre nada: las opciones están bloqueadas                             | Verificado    |
+| CP-08 | Usar el comodín 50/50                              | Desaparecen dos opciones incorrectas y el botón queda deshabilitado       | Verificado    |
+| CP-09 | Acertar 3 preguntas seguidas                       | Se suma la bonificación de racha de +50                                   | Verificado    |
+| CP-10 | Terminar una partida                               | Se muestra el resumen y el puntaje aparece en el ranking                  | Verificado    |
+| CP-11 | Recargar la página                                 | El ranking y las estadísticas se conservan                                | Verificado    |
+| CP-12 | Comparar la aplicación con el diseño               | Las pantallas, colores y componentes coinciden con el diseño              | Verificado    |
+| CP-13 | Abrir el juego en un celular de 360 px             | Todo se ve y funciona sin desplazamiento horizontal                       | Verificado    |
 
 ## Despliegue en Vercel
 
