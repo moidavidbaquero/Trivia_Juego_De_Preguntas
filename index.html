@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trivia Colombia</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />
+    <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <header class="top">
+      <button
+        class="logo"
+        data-ir="inicio"
+        aria-label="Trivia Colombia, ir al inicio"
+      >
+        <img src="assets/img/logo.svg" alt="" width="36" height="36" />
+        Trivia Colombia
+      </button>
+    </header>
+    <main>
+      <!-- P1 Inicio -->
+      <section id="inicio" class="pantalla" aria-labelledby="t-inicio">
+        <img
+          class="logo-grande"
+          src="assets/img/logo.svg"
+          alt="Logo de Trivia Colombia: un cóndor de los Andes con alas en los colores de la bandera y el cuello en forma de signo de interrogación"
+          width="120"
+          height="120"
+        />
+        <h1 id="t-inicio">Trivia Colombia</h1>
+        <p>Pon a prueba lo que sabes de Colombia.</p>
+        <label for="nombre">Nombre del jugador (obligatorio)</label>
+        <input
+          id="nombre"
+          maxlength="20"
+          autocomplete="nickname"
+          placeholder="Escribe tu nombre"
+        />
+        <p id="error-nombre" class="error" role="alert" hidden>
+          Escribe tu nombre para jugar
+        </p>
+        <button class="btn" data-ir="config">Jugar</button>
+        <div class="fila">
+          <button class="btn sec" data-ir="instrucciones">Instrucciones</button
+          ><button class="btn sec" data-ir="ranking">Ranking</button>
+        </div>
+        <button class="btn sec" data-ir="ajustes">
+          Ajustes (sonido y tema)
+        </button>
+      </section>
+
+      <!-- P2 Instrucciones -->
+      <section
+        id="instrucciones"
+        class="pantalla"
+        hidden
+        aria-labelledby="t-ins"
+      >
+        <h1 id="t-ins">Instrucciones</h1>
+        <div class="grid3">
+          <div class="caja">
+            <b>20 segundos</b> por pregunta. Si se agota, cuenta como
+            incorrecta.
+          </div>
+          <div class="caja">
+            <b>2 comodines</b>, uno de cada uno por partida: 50/50 (quita 2
+            opciones) y Tiempo extra (+10 s). Cada uno resta 30 puntos.
+          </div>
+          <div class="caja">
+            <b>Puntaje:</b> +100 por acierto, +5 por segundo restante (máx.
+            +100) y +50 por racha de 3 (3, 6, 9). Multiplicador: fácil x1, medio
+            x1.5, difícil x2.
+          </div>
+        </div>
+        <div class="fila">
+          <button class="btn sec" data-ir="inicio">Volver</button
+          ><button class="btn" data-ir="config">Continuar</button>
+        </div>
+      </section>
+
+      <!-- P3 Configuración de partida -->
+      <section id="config" class="pantalla" hidden aria-labelledby="t-cfg">
+        <h1 id="t-cfg">Configuración de partida</h1>
+        <div class="grid3" id="cats">
+          <button class="btn cat" data-cat="geografia">Geografía</button>
+          <button class="btn cat" data-cat="historia">Historia</button>
+          <button class="btn cat" data-cat="cultura">
+            Cultura y Tradiciones
+          </button>
+          <button class="btn cat" data-cat="deportes">Deportes</button>
+          <button class="btn cat" data-cat="naturaleza">
+            Ciencia y Naturaleza
+          </button>
+          <button class="btn cat" data-cat="todas">Todas</button>
+        </div>
+        <p class="sub">Dificultad</p>
+        <div class="fila" id="difs">
+          <button class="btn cat" data-dif="facil">Fácil x1</button>
+          <button class="btn cat" data-dif="medio">Medio x1.5</button>
+          <button class="btn cat" data-dif="dificil">Difícil x2</button>
+        </div>
+        <p id="mejor" class="caja"></p>
+        <button class="btn" id="btn-comenzar">Comenzar</button>
+        <button class="btn sec" data-ir="instrucciones">Volver</button>
+      </section>
+
+      <!-- P4 Juego y P5 Retroalimentación -->
+      <section id="juego" class="pantalla" hidden aria-labelledby="t-jue">
+        <h1 id="t-jue" class="sr">Partida de trivia</h1>
+        <div class="barra">
+          <span id="num"></span><span id="puntos"></span
+          ><span id="tiempo" class="reloj"></span>
+        </div>
+        <progress
+          id="progreso"
+          max="10"
+          value="1"
+          aria-label="Progreso de la partida"
+        ></progress>
+        <p id="enunciado" class="caja enun"></p>
+        <div id="opciones" class="grid2"></div>
+        <div class="fila">
+          <button class="btn sec" id="c-cincuenta">50/50 (−30)</button>
+          <button class="btn sec" id="c-tiempo">+10 s (−30)</button>
+        </div>
+        <div id="feedback" class="caja" hidden>
+          <p id="estado" role="status"></p>
+          <p id="explicacion"></p>
+          <button class="btn" id="btn-siguiente"></button>
+        </div>
+      </section>
+
+      <!-- P6 Resultado -->
+      <section id="resultado" class="pantalla" hidden aria-labelledby="t-res">
+        <h1 id="t-res">Resultado</h1>
+        <p class="caja grande">Puntaje final: <span id="r-puntaje"></span></p>
+        <div class="grid3">
+          <div class="caja">Aciertos<br /><b id="r-aciertos"></b></div>
+          <div class="caja">Tiempo total<br /><b id="r-tiempo"></b></div>
+          <div class="caja">Posición en ranking<br /><b id="r-pos"></b></div>
+        </div>
+        <p id="r-mensaje"></p>
+        <div class="caja">
+          <h2>Revisión de preguntas falladas</h2>
+          <ol id="r-revision"></ol>
+        </div>
+        <button class="btn" data-ir="config">Jugar de nuevo</button>
+        <div class="fila">
+          <button class="btn sec" data-ir="ranking">Ver ranking</button
+          ><button class="btn sec" data-ir="inicio">Volver al inicio</button>
+        </div>
+      </section>
+
+      <!-- P7 Ranking y estadísticas -->
+      <section id="ranking" class="pantalla" hidden aria-labelledby="t-rank">
+        <h1 id="t-rank">Ranking y estadísticas</h1>
+        <table>
+          <caption class="sr">
+            Top 10 local, de mayor a menor puntaje
+          </caption>
+          <thead>
+            <tr>
+              <th>Pos.</th>
+              <th>Nombre</th>
+              <th>Puntaje</th>
+              <th class="extra">Categoría</th>
+              <th class="extra">Fecha</th>
+            </tr>
+          </thead>
+          <tbody id="filas"></tbody>
+        </table>
+        <div id="vacio" class="caja" hidden>
+          <b>Sin registros locales</b>
+          <p>Aún no hay partidas guardadas en este dispositivo.</p>
+          <button class="btn" data-ir="config">Jugar</button>
+        </div>
+        <div class="grid2" id="stats"></div>
+        <div class="fila">
+          <button class="btn sec" id="btn-borrar">Borrar ranking</button
+          ><button class="btn sec" data-ir="inicio">Volver</button>
+        </div>
+        <dialog id="dlg" aria-labelledby="dlg-t">
+          <h2 id="dlg-t">¿Borrar ranking local?</h2>
+          <p>Se eliminarán las partidas guardadas en este dispositivo.</p>
+          <div class="fila">
+            <button class="btn sec" id="dlg-no">Cancelar</button
+            ><button class="btn peligro" id="dlg-si">Borrar</button>
+          </div>
+        </dialog>
+      </section>
+
+      <!-- P8 Ajustes -->
+      <section id="ajustes" class="pantalla" hidden aria-labelledby="t-aju">
+        <h1 id="t-aju">Ajustes</h1>
+        <p class="sub">Efectos de sonido</p>
+        <div class="fila" id="ops-sonido">
+          <button class="btn cat" data-sonido="1">Activado</button
+          ><button class="btn cat" data-sonido="0">Desactivado</button>
+        </div>
+        <p class="sub">Música de fondo</p>
+        <div class="fila" id="ops-musica">
+          <button class="btn cat" data-musica="1">Activada</button
+          ><button class="btn cat" data-musica="0">Desactivada</button>
+        </div>
+        <p class="sub">Tema</p>
+        <div class="fila" id="ops-tema">
+          <button class="btn cat" data-tema="claro">Claro</button
+          ><button class="btn cat" data-tema="oscuro">Oscuro</button>
+        </div>
+        <button class="btn sec" data-ir="inicio">Volver</button>
+      </section>
+      <!-- Galería: diseño y capturas (las imágenes se guardan en docs/diseno/) -->
+      <section id="galeria" class="pantalla" hidden aria-labelledby="t-gal">
+        <h1 id="t-gal">Diseño y capturas</h1>
+        <h2>Diseño en Figma / MockFlow</h2>
+        <div class="galeria">
+          <figure>
+            <a
+              href="docs/diseno/diseno-guia-estilos.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/diseno-guia-estilos.png"
+                alt="Guía de estilos: paleta, tipografías, tamaños y estados de los botones"
+                loading="lazy"
+            /></a>
+            <figcaption>
+              Guía de estilos: paleta, tipografías, tamaños y estados de los
+              botones
+            </figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p1-inicio.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p1-inicio.png"
+                alt="Wireframe de baja fidelidad: P1 · Inicio"
+                loading="lazy"
+            /></a>
+            <figcaption>Wireframe P1 · Inicio</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p2-instrucciones.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p2-instrucciones.png"
+                alt="Wireframe de baja fidelidad: P2 · Instrucciones"
+                loading="lazy"
+            /></a>
+            <figcaption>Wireframe P2 · Instrucciones</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p3-configuracion.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p3-configuracion.png"
+                alt="Wireframe de baja fidelidad: P3 · Configuración de partida"
+                loading="lazy"
+            /></a>
+            <figcaption>Wireframe P3 · Configuración de partida</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p4-p5-juego.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p4-p5-juego.png"
+                alt="Wireframe de baja fidelidad: P4 y P5 · Juego y retroalimentación"
+                loading="lazy"
+            /></a>
+            <figcaption>
+              Wireframe P4 y P5 · Juego y retroalimentación
+            </figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p6-resultado.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p6-resultado.png"
+                alt="Wireframe de baja fidelidad: P6 · Resultado"
+                loading="lazy"
+            /></a>
+            <figcaption>Wireframe P6 · Resultado</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p7-ranking.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p7-ranking.png"
+                alt="Wireframe de baja fidelidad: P7 · Ranking y estadísticas"
+                loading="lazy"
+            /></a>
+            <figcaption>Wireframe P7 · Ranking y estadísticas</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/wireframe-p8-ajustes.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/wireframe-p8-ajustes.png"
+                alt="Wireframe de baja fidelidad: P8 · Ajustes"
+                loading="lazy"
+            /></a>
+            <figcaption>Wireframe P8 · Ajustes</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p1-inicio.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p1-inicio.png"
+                alt="Mockup de alta fidelidad: P1 · Inicio, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P1 · Inicio</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p2-instrucciones.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p2-instrucciones.png"
+                alt="Mockup de alta fidelidad: P2 · Instrucciones, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P2 · Instrucciones</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p3-configuracion.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p3-configuracion.png"
+                alt="Mockup de alta fidelidad: P3 · Configuración de partida, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P3 · Configuración de partida</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p4-juego.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p4-juego.png"
+                alt="Mockup de alta fidelidad: P4 · Juego, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P4 · Juego</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p5-retroalimentacion.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p5-retroalimentacion.png"
+                alt="Mockup de alta fidelidad: P5 · Retroalimentación, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P5 · Retroalimentación</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p6-resultado.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p6-resultado.png"
+                alt="Mockup de alta fidelidad: P6 · Resultado, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P6 · Resultado</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p7-ranking.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p7-ranking.png"
+                alt="Mockup de alta fidelidad: P7 · Ranking y estadísticas, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P7 · Ranking y estadísticas</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/mockup-p8-ajustes.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/mockup-p8-ajustes.png"
+                alt="Mockup de alta fidelidad: P8 · Ajustes, versión escritorio y móvil"
+                loading="lazy"
+            /></a>
+            <figcaption>Mockup P8 · Ajustes</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/diseno-prototipo.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/diseno-prototipo.png"
+                alt="Prototipo navegable con las pantallas conectadas"
+                loading="lazy"
+            /></a>
+            <figcaption>
+              Prototipo navegable con las pantallas conectadas
+            </figcaption>
+          </figure>
+        </div>
+        <h2>Aplicación terminada</h2>
+        <div class="galeria">
+          <figure>
+            <a
+              href="docs/diseno/app-01-inicio.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-01-inicio.png"
+                alt="Inicio"
+                loading="lazy"
+            /></a>
+            <figcaption>Inicio</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-02-instrucciones.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-02-instrucciones.png"
+                alt="Instrucciones"
+                loading="lazy"
+            /></a>
+            <figcaption>Instrucciones</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-03-configuracion.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-03-configuracion.png"
+                alt="Configuración de partida"
+                loading="lazy"
+            /></a>
+            <figcaption>Configuración de partida</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-04-juego.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-04-juego.png"
+                alt="Juego"
+                loading="lazy"
+            /></a>
+            <figcaption>Juego</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-05-retroalimentacion.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-05-retroalimentacion.png"
+                alt="Retroalimentación"
+                loading="lazy"
+            /></a>
+            <figcaption>Retroalimentación</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-06-resultado.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-06-resultado.png"
+                alt="Resultado"
+                loading="lazy"
+            /></a>
+            <figcaption>Resultado</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-07-ranking.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-07-ranking.png"
+                alt="Ranking y estadísticas"
+                loading="lazy"
+            /></a>
+            <figcaption>Ranking y estadísticas</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-08-ajustes.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-08-ajustes.png"
+                alt="Ajustes"
+                loading="lazy"
+            /></a>
+            <figcaption>Ajustes</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-09-movil-360.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-09-movil-360.png"
+                alt="Vista móvil a 360 px"
+                loading="lazy"
+            /></a>
+            <figcaption>Vista móvil a 360 px</figcaption>
+          </figure>
+          <figure>
+            <a
+              href="docs/diseno/app-10-tema-oscuro.png"
+              target="_blank"
+              rel="noopener"
+              ><img
+                src="docs/diseno/app-10-tema-oscuro.png"
+                alt="Tema oscuro"
+                loading="lazy"
+            /></a>
+            <figcaption>Tema oscuro</figcaption>
+          </figure>
+        </div>
+        <button class="btn sec" data-ir="inicio">Volver</button>
+      </section>
+    </main>
+    <footer>
+      <small
+        >Trivia Colombia · Universidad de Santander · Desarrollo Full Stack ·
+        Autor: Moises David Baquero Daza</small
+      ><br /><button class="pie" data-ir="galeria">
+        Ver diseño y capturas
+      </button>
+    </footer>
+    <script src="js/preguntas.js"></script>
+    <script src="js/almacenamiento.js"></script>
+    <script src="js/juego.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
