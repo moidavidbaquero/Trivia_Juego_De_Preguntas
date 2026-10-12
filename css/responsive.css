@@ -1,0 +1,53 @@
+/* Media queries: celulares desde 360 px, tabletas y escritorio */
+@media (max-width: 700px) {
+  .grid3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid2#opciones {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  main {
+    padding: 12px;
+  }
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+  #cats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fila {
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-size: 0.95rem;
+  }
+  .extra {
+    display: none;
+  }
+  th,
+  td {
+    padding: 6px 4px;
+    font-size: 0.9rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  main {
+    padding: 32px 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (max-width: 700px) {
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+}
