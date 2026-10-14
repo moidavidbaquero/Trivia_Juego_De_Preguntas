@@ -18,7 +18,7 @@ Juego web de preguntas y respuestas sobre Colombia, desarrollado con **HTML5, CS
 
 - Diseño en MockFlow: https://app.mockflow.com/iview/M2f692c9ed99b4ee5b3ecd1d915a88a711791753924796
 - Despliegue en Vercel: https://trivia-gamma-one.vercel.app/
-- Video explicativo (máx. 5 min): _pendiente_
+- Video explicativo (máx. 5 min): https://drive.google.com/drive/folders/13uRY_1Fs3m7TtlqTGyoifBEgsxsu1Bnz?usp=sharing
 
 ## Características
 
