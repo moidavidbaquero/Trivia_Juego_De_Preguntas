@@ -6,7 +6,8 @@ Juego web de preguntas y respuestas sobre Colombia, desarrollado con **HTML5, CS
 
 | Dato            | Información                     |
 | --------------- | ------------------------------- |
-| **Autor**       | **Moises David Baquero Daza**   |
+|  **Autores**    | **Moises David Baquero Daza**   |
+|                 | **David Santiago Vargas Parra** |
 | Institución     | Universidad de Santander (UDES) |
 | Asignatura      | Desarrollo Full Stack           |
 | Docente         | Carlos Carrascal                |
