@@ -199,6 +199,6 @@ Casos de prueba del parcial (CP-01 a CP-13). Se marca el resultado después de e
 
 Backend con API y base de datos para un ranking compartido, registro e inicio de sesión, panel para que el docente edite preguntas, retos diarios y conversión a PWA.
 
-## Autor
+## Autores
 
-**Moises David Baquero Daza** – Estudiante de la Universidad de Santander (UDES), asignatura Desarrollo Full Stack.
+**Moises David Baquero Daza y David Santiago Vargas Parra** – Estudiantes de la Universidad de Santander (UDES), asignatura Desarrollo Full Stack.
