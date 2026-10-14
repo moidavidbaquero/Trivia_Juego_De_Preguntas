@@ -28,7 +28,6 @@ function ir(id) {
 document.addEventListener("DOMContentLoaded", () => {
   const p = obtenerPrefs();
   aplicarTema(p.tema);
-  $("#nombre").value = p.nombre;
   document.addEventListener("click", (e) => {
     iniciarMusica(); // los navegadores exigen una interacción del usuario para reproducir audio
     const t = e.target.closest("button");
